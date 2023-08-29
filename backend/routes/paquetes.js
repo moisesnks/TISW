@@ -21,7 +21,10 @@ router.get('/paquetes', async (req, res) => {
 router.post('/paquetes', async (req, res) => {
   try {
     const { nombre, destino_id, precio } = req.body;
-    const newPaquete = await db.query('INSERT INTO paquetes (nombre, destino_id, precio) VALUES ($1, $2, $3) RETURNING *', [nombre, destino_id, precio]);
+    const newPaquete = await db.query(
+      'INSERT INTO paquetes (nombre, destino_id, precio) VALUES ($1, $2, $3) RETURNING *',
+      [nombre, destino_id, precio]
+    );
     res.json(newPaquete.rows[0]);
   } catch (error) {
     console.error(error.message);
@@ -29,14 +32,13 @@ router.post('/paquetes', async (req, res) => {
   }
 });
 
+
 // Actualizar la imagen de un paquete
 router.put('/paquetes/:id/image', upload.single('image'), async (req, res) => {
   const { id } = req.params;
   const imageBuffer = req.file.buffer;
 
   try {
-    // Aquí puedes realizar la lógica para almacenar la imagen en la base de datos o en algún servicio de almacenamiento
-    // Por ejemplo, podrías guardarla como datos binarios en la columna 'img' de la tabla 'paquetes'
     await db.query('UPDATE paquetes SET img = $1 WHERE id = $2', [imageBuffer, id]);
     res.send('Imagen actualizada correctamente');
   } catch (error) {
@@ -58,6 +60,23 @@ router.put('/paquetes/:id', async (req, res) => {
     res.json(updatedPaquete.rows[0]);
   } catch (error) {
     console.error('Error actualizando paquete:', error);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
+// Eliminar un paquete
+router.delete('/paquetes/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedPaquete = await db.query('DELETE FROM paquetes WHERE id = $1 RETURNING *', [id]);
+    if (deletedPaquete.rows.length === 0) {
+      res.status(404).json({ message: 'Paquete no encontrado' });
+    } else {
+      res.json({ message: 'Paquete eliminado correctamente', deletedPackage: deletedPaquete.rows[0] });
+    }
+  } catch (error) {
+    console.error('Error deleting package:', error);
     res.status(500).send('Error en el servidor');
   }
 });

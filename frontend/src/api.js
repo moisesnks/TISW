@@ -49,5 +49,35 @@ export const updatePackage = async (updatedPackage) => {
   }
 };
 
-// Otras funciones para enviar datos al backend, como crear o actualizar paquetes
+export async function createPackage(newPackage) {
+  try {
+    const response = await axios.post(`${API_URL}/paquetes`, newPackage);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating package:', error);
+    throw error;
+  }
+};
+
+export const deletePackage = async (packageId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/paquetes/${packageId}`);
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createDestino = async (newDestino) => {
+  try {
+    const response = await axios.post(`${API_URL}/destinos`, newDestino);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
 

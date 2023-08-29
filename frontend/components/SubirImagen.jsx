@@ -22,7 +22,7 @@ function SubirImagen() {
       alert('Selecciona un paquete y una imagen para subir.');
       return;
     }
-
+  
     const compressedFile = await new Compressor(selectedFile, {
       quality: 0.6,
       maxWidth: 800,
@@ -30,12 +30,15 @@ function SubirImagen() {
       success(result) {
         const formData = new FormData();
         formData.append('image', result);
-
+  
         updateImage(paqueteId, formData)
           .then(() => {
             alert('Imagen subida correctamente.');
             setPaqueteId('');
             setSelectedFile(null);
+  
+            // Recarga la página para reflejar los cambios
+            window.location.reload();
           })
           .catch((error) => {
             console.error('Error subiendo imagen:', error);
