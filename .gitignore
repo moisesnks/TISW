@@ -1,0 +1,15 @@
+# Ignorar la carpeta de dependencias de Node.js
+node_modules/
+
+# Ignorar el archivo de variables de entorno
+.env
+
+# Ignorar la carpeta de compilación o build (para proyectos frontend)
+build/
+
+# Ignorar archivos de respaldos
+*.bak
+*.swp
+
+# Ignorar archivos de registro
+*.log
