@@ -78,6 +78,25 @@ export const createDestino = async (newDestino) => {
   }
 };
 
+export const updateDestino = async (destinoId, updatedDestino) => {
+  try {
+    const response = await axios.put(`/api/destinos/${destinoId}`, updatedDestino);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteDestino = async (destinoId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/destinos/${destinoId}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 
 
 

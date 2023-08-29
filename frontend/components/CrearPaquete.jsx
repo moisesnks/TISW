@@ -45,8 +45,8 @@ function CrearPaquete({ onPackageCreated }) {
     <div className="crear-paquete-container">
       <h3>Crear Nuevo Paquete</h3>
       <div className="form-group">
-        <label htmlFor="nombre">Nombre:</label>
-        <input type="text" id="nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+        <label htmlFor="nombrePaquete">Nombre:</label>
+        <input type="text" id="nombrePaquete" value={nombre} onChange={e => setNombre(e.target.value)} />
       </div>
       <div className="form-group">
         <label htmlFor="destinoId">Destino:</label> {/* Cambia a un campo de selección */}

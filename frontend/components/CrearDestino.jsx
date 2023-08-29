@@ -28,8 +28,8 @@ function CrearDestino({ onDestinoCreated }) {
     <div className="crear-destino-container">
       <h3>Crear Nuevo Destino</h3>
       <div className="form-group">
-        <label htmlFor="nombre">Nombre:</label>
-        <input type="text" id="nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+        <label htmlFor="nombreDestino">Nombre:</label>
+        <input type="text" id="nombreDestino" value={nombre} onChange={e => setNombre(e.target.value)} />
       </div>
       <div className="form-group">
         <label htmlFor="pais">País:</label>

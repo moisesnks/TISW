@@ -4,8 +4,9 @@ import { fetchDestinos, fetchPaquetes } from './api';
 import SubirImagen from '../components/SubirImagen'; 
 import PaqueteTuristico from '../components/PaqueteTuristico'; 
 import ModificarPaquete from '../components/ModificarPaquete'; 
+import ModificarDestino from '../components/ModificarDestino';
 import CrearPaquete from '../components/CrearPaquete';
-import CrearDestino from '../components/CrearDestino'; // Importa el componente
+import CrearDestino from '../components/CrearDestino';
 
 function App() {
   const [destinos, setDestinos] = useState([]);
@@ -42,6 +43,9 @@ function App() {
       <div className='Admin'>
         <div className='AdminSection'>
           <ModificarPaquete />
+        </div>
+        <div className='AdminSection'>
+          <ModificarDestino />
         </div>
         <div className='AdminSection'>
           <SubirImagen />
