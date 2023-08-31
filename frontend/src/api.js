@@ -2,7 +2,9 @@ import axios from 'axios';
 import Compressor from 'compressorjs';
 
 
-const API_URL = 'http://localhost:3001/api'; // Actualiza la URL según tu configuración
+// const API_URL = 'http://localhost:3001/api'; // Antigua url de la API en node-back
+const API_URL = 'http://localhost:8080'; // url actual de la API en go-back
+
 
 export const fetchDestinos = async () => {
   try {
@@ -80,7 +82,7 @@ export const createDestino = async (newDestino) => {
 
 export const updateDestino = async (destinoId, updatedDestino) => {
   try {
-    const response = await axios.put(`/api/destinos/${destinoId}`, updatedDestino);
+    const response = await axios.put(`${API_URL}/destinos/${destinoId}`, updatedDestino);
     return response.data;
   } catch (error) {
     throw error;
